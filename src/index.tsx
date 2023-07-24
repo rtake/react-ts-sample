@@ -2,11 +2,11 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 // import App from './App';
-import Message from './components/Message'
+import Parent from './components/ContainerSample'
 
 ReactDOM.render(
   <React.StrictMode>
-    <Message />
+    <Parent />
   </React.StrictMode>,
   document.getElementById('root')
 );
