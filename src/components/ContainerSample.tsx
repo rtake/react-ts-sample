@@ -1,4 +1,4 @@
-const Container = (props: { title: string; children: React.ReactElement}) => {
+const Container = (props: { title: string; children: React.ReactElement}):  JSX.Element => {
     const { title, children } = props
 
     return (
@@ -9,7 +9,7 @@ const Container = (props: { title: string; children: React.ReactElement}) => {
     )
 }
 
-const Parent = () => {
+const Parent = (): JSX.Element => {
     return (
         <Container title="Hello">
             <p>この部分が背景色で囲まれます</p>
