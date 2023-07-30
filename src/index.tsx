@@ -1,10 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-// import App from './App';
-import { UseMemoSample } from './components/UseMemoSample'
+import { Clock } from './components/Clock'
 
 ReactDOM.render(
-  <UseMemoSample />,
+  <Clock />,
   document.getElementById('root')
 );
