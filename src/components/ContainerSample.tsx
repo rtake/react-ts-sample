@@ -1,27 +1,31 @@
 import React from "react";
 
-type ContainerProps = {
-    title: string
-    children: React.ReactNode
+const TitleContext = React.createContext('')
+
+const Title = () => {
+    return (
+        <TitleContext.Consumer>
+            { (title) => { return <h1>{title}</h1> } }
+        </TitleContext.Consumer>
+    )
 }
 
-const Container = (props: ContainerProps):  JSX.Element => {
-    const { title, children } = props
-
+const Header = () => {
     return (
-        <div style={{ background: "red"}}>
-            <span>{title}</span>
-            <div>{children}</div>
+        <div>
+            <Title />
         </div>
     )
 }
 
-const Parent = (): JSX.Element => {
+const Page = () => {
+    const title = 'React Book'
+
     return (
-        <Container title="Hello">
-            <p>この部分が背景色で囲まれます</p>
-        </Container>
+        <TitleContext.Provider value={title}>
+            <Header />
+        </TitleContext.Provider>
     )
 }
 
-export default Parent
+export default Page
