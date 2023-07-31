@@ -1,50 +1,37 @@
-import React, { useCallback, useState} from 'react'
+import React, { useContext } from 'react'
 
-type ButtonProps = {
-    onClick: () => void
+type User = {
+    id: number
+    name: string
 }
 
-const DecrementButton = (props: ButtonProps) => {
-    const { onClick } = props
-    console.log('DecrementButtonが再描画されました')
-    return <button onClick={onClick}>Decrement</button>
+const UserContext = React.createContext<User | null>(null)
+
+const GrandChild = () => {
+    const user = useContext(UserContext)
+    return user !== null ? <p>Hello, {user.name}</p> : null
 }
 
-const IncrementButton = React.memo((props: ButtonProps) => {
-    const { onClick } = props
-    console.log('IncrementButtonが再描画されました')
-    return <button onClick={onClick}>Increment</button>
-})
-
-const DoubleButton = React.memo((props: ButtonProps) => {
-    const { onClick } = props
-    console.log('DoubleButtonが再描画されました')
-    return <button onClick={onClick}>Double</button>
-})
-
-export const Parent = () => {
-    const [count, setCount] = useState(1)
-
-    const decrement = () => {
-        setCount((c) => c - 1)
-    }
-
-    const increment = () => {
-        setCount((c) => c + 1)
-    }
-
-    const double = useCallback(() => {
-        setCount((c) => c*2)
-    }, [])
-    
-    console.log(`Parentが再描画されました, count=${count}`)
+const Child = () => {
+    const now = new Date()
 
     return (
         <div>
-            <p>Count: {count}</p>
-            <DecrementButton onClick={decrement} />
-            <IncrementButton onClick={increment} />
-            <DoubleButton onClick={double} />
+            <p>Current: {now.toLocaleString()}</p>
+            <GrandChild />
         </div>
+    )
+}
+
+export const Parent = () => {
+    const user = {
+        id: 1,
+        name: 'Alice'
+    }
+
+    return (
+        <UserContext.Provider value={user}>
+            <Child />
+        </UserContext.Provider>
     )
 }
