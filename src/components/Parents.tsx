@@ -7,9 +7,12 @@ type User = {
 
 const UserContext = React.createContext<User | null>(null)
 
-const GrandChild = () => {
-    const user = useContext(UserContext)
-    return user !== null ? <p>Hello, {user.name}</p> : null
+const GrandChild = () => {    
+    return (
+        <UserContext.Consumer>
+            {(user) => { return user !== null ? <p>Hello, {user.name}</p> : null }}
+        </UserContext.Consumer>
+    )
 }
 
 const Child = () => {
