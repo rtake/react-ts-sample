@@ -5,8 +5,9 @@ import { Clock } from './components/Clock'
 import { ImageUploader } from './components/ImageUploader'
 import { Parent } from './components/ImperativeHandleSample'
 import { Input } from './components/Input'
+import { CountButton } from './components/countButton';
 
 ReactDOM.render(
-  <Input />,
+  <CountButton label='button' maximum={10} />,
   document.getElementById('root')
 );
